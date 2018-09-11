@@ -139,8 +139,12 @@ public class TicTacToeModel {
         
         /* INSERT YOUR CODE HERE */
 		
-		boolean marked = !(this.grid[row][col].equals(Mark.EMPTY));
-
+		boolean marked = false;
+		
+		
+		if(this.isValidSquare(row,col)){
+			marked = !(this.grid[row][col].equals(Mark.EMPTY));
+		}
         return marked; /* remove this line! */
             
     }
