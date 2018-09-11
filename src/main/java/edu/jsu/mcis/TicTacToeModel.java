@@ -138,8 +138,10 @@ public class TicTacToeModel {
         /* Return true if square at specified location is marked */
         
         /* INSERT YOUR CODE HERE */
+		
+		boolean marked = !(this.grid[row][col].equals(Mark.EMPTY));
 
-        return false; /* remove this line! */
+        return marked; /* remove this line! */
             
     }
 	
