@@ -115,7 +115,7 @@ public class TicTacToeModel {
 		}
 		
 
-        return madeMark; //return?
+        return madeMark; //return? use isValidSquare?
         
     }
 	
@@ -124,8 +124,12 @@ public class TicTacToeModel {
         /* Return true if specified location is within grid bounds */
         
         /* INSERT YOUR CODE HERE */
+		
+		boolean valid = (row < this.width) && (col < this.width);
+		
+		
 
-        return false; /* remove this line! */
+        return valid; /* remove this line! */
         
     }
 	
