@@ -96,8 +96,26 @@ public class TicTacToeModel {
            empty! */
         
         /* INSERT YOUR CODE HERE */
+		
+		boolean madeMark = false;
+		
+		if((row < this.width) && (col < this.width)){
+			
+			if(this.grid[row][col].equals(Mark.Empty)){
+				
+				madeMark = true;
+				
+				if(xTurn){
+					this.grid[row][col] = Mark.X;
+				}
+				else{
+					this.grid[row][col] = Mark.O;
+				}
+			}
+		}
+		
 
-        return false; /* remove this line! */
+        return madeMark; //return?
         
     }
 	
