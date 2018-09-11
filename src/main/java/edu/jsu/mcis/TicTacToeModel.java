@@ -149,9 +149,17 @@ public class TicTacToeModel {
         
         /* Return mark from the square at the specified location */
         
-        /* INSERT YOUR CODE HERE */
+        /* use isValidSquare?*/
+		
+		Mark mark = null;
+		
+		if(this.isValidSquare(row,col)){
+			if(isSquareMarked(row,col)){
+				mark = this.grid[row][col];
+			}
+		}
 
-        return null; /* remove this line! */
+        return mark; /* remove this line! */
             
     }
 	
