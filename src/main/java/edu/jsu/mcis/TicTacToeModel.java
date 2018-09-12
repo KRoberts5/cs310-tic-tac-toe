@@ -81,7 +81,7 @@ public class TicTacToeModel {
 		
 		for(int i = 0; i < width; ++i){
 			for(int j = 0; j < width; ++j){
-				this.grid[i][j] = Mark.empty;
+				this.grid[i][j] = Mark.EMPTY;
 			}
 		}
 
@@ -99,9 +99,11 @@ public class TicTacToeModel {
 		
 		boolean madeMark = false;
 		
-		if((row < this.width) && (col < this.width)){
+		
+		
+		if(this.isValidSquare(row, col)){
 			
-			if(this.grid[row][col].equals(Mark.Empty)){
+			if(!this.isSquareMarked(row,col)){
 				
 				madeMark = true;
 				
@@ -115,7 +117,7 @@ public class TicTacToeModel {
 		}
 		
 
-        return madeMark; //return? use isValidSquare?
+        return madeMark; 
         
     }
 	
@@ -143,7 +145,7 @@ public class TicTacToeModel {
 		
 		
 		if(this.isValidSquare(row,col)){
-			marked = !(this.grid[row][col].equals(Mark.EMPTY));
+			marked = (this.grid[row][col] != Mark.EMPTY);
 		}
         return marked; /* remove this line! */
             
