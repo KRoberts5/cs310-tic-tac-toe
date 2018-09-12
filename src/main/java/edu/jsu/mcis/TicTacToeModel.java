@@ -187,8 +187,23 @@ public class TicTacToeModel {
            winner */
         
         /* INSERT YOUR CODE HERE */
+		
+		boolean won = false;
+		int markCount = 0;
+		
+		for(int i = 0; i < width; ++i){		//checks if theres a winning row
+			for(int j = 0; j < width; ++j){
+				if(this.grid[i][j] == mark)
+					++markCount;
+			}
+			if(markCount == this.width){
+				won = true;
+				break;
+			}
+			markCount = 0;
+		}
 
-        return false; /* remove this line! */
+        return won; /* remove this line! */
 
     }
 	
