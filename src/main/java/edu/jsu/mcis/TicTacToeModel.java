@@ -109,9 +109,11 @@ public class TicTacToeModel {
 				
 				if(xTurn){
 					this.grid[row][col] = Mark.X;
+					xTurn = false;
 				}
 				else{
 					this.grid[row][col] = Mark.O;
+					xTurn = true;
 				}
 			}
 		}
@@ -127,7 +129,10 @@ public class TicTacToeModel {
         
         /* INSERT YOUR CODE HERE */
 		
-		boolean valid = (row < this.width) && (col < this.width);
+		boolean rowValid = (row < this.width) && (row >= 0);
+		boolean colValid = (col < this.width) && (col >= 0);
+		
+		boolean valid = rowValid && colValid;
 		
 		
 
@@ -181,8 +186,9 @@ public class TicTacToeModel {
 		
 		boolean xWon = isMarkWin(Mark.X);
 		boolean oWon = isMarkWin(Mark.O);
+		boolean tie = isTie();
 		
-		if(xWon && oWon)
+		if(tie)
 			result = Result.TIE;
 		else if(xWon)
 			result = Result.X;
@@ -212,14 +218,14 @@ public class TicTacToeModel {
 			for(int j = 0; j < width; ++j){
 				if(this.grid[i][j] == mark)
 					++rowCount;
-				if(this.grid[j][i].equals(mark) )
+				if(this.grid[j][i] == mark )
 					++colCount;
 					
 			}
-			if(this.grid[i][i].equals(mark)
+			if(this.grid[i][i] == mark)
 				++frontDiagCount;
 			
-			if(this.grid[i][this.width - 1 - i].equals(mark))
+			if(this.grid[i][this.width - 1 - i] == mark)
 				++backDiagCount;
 				
 			
@@ -253,8 +259,32 @@ public class TicTacToeModel {
         /* Check the squares of the board to see if the game is a tie */
 
         /* INSERT YOUR CODE HERE */
+		
+		int markCount = 0;
+		int spaceTotal = this.width*this.width;
+		
+		boolean tied = false;
+		boolean full = false;
+		boolean xWon = this.isMarkWin(Mark.X);
+		boolean oWon = this.isMarkWin(Mark.O);
+		
+		for(int i = 0; i < this.width; ++i){
+			for(int j = 0; j < this.width; ++j){
+				
+				if(grid[i][j] != Mark.EMPTY)
+					++markCount;
+				
+			}
+		}
+		
+		if(markCount == spaceTotal)
+			full = true;
+		
+		if((!xWon) && (!oWon) && (full))
+			tied = true;
+	
 
-        return false; /* remove this line! */
+        return tied; /* remove this line! */
         
     }
 
