@@ -150,7 +150,8 @@ public class TicTacToeModel {
 		
 		
 		if(this.isValidSquare(row,col)){
-			marked = (this.grid[row][col].equals(Mark.EMPTY));
+			if((grid[row][col] == Mark.X) || (grid[row][col] == Mark.O))
+				marked = true;
 		}
         return marked; /* remove this line! */
             
