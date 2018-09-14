@@ -145,7 +145,7 @@ public class TicTacToeModel {
 		
 		
 		if(this.isValidSquare(row,col)){
-			marked = (this.grid[row][col] != Mark.EMPTY);
+			marked = (this.grid[row][col].equals(Mark.EMPTY));
 		}
         return marked; /* remove this line! */
             
@@ -176,8 +176,22 @@ public class TicTacToeModel {
            value */
         
         /* INSERT YOUR CODE HERE */
+		
+		Result result = null;
+		
+		boolean xWon = isMarkWin(Mark.X);
+		boolean oWon = isMarkWin(Mark.O);
+		
+		if(xWon && oWon)
+			result = Result.TIE;
+		else if(xWon)
+			result = Result.X;
+		else if(oWon)
+			result = Result.O;
+		else
+			result = Result.NONE;
 
-        return null; /* remove this line! */
+        return result; /* remove this line! */
 
     }
 	
@@ -189,18 +203,45 @@ public class TicTacToeModel {
         /* INSERT YOUR CODE HERE */
 		
 		boolean won = false;
-		int markCount = 0;
+		int rowCount = 0;
+		int colCount = 0;
+		int frontDiagCount = 0;
+		int backDiagCount = 0;
 		
-		for(int i = 0; i < width; ++i){		//checks if theres a winning row
+		for(int i = 0; i < width; ++i){		
 			for(int j = 0; j < width; ++j){
 				if(this.grid[i][j] == mark)
-					++markCount;
+					++rowCount;
+				if(this.grid[j][i].equals(mark) )
+					++colCount;
+					
 			}
-			if(markCount == this.width){
+			if(this.grid[i][i].equals(mark)
+				++frontDiagCount;
+			
+			if(this.grid[i][this.width - 1 - i].equals(mark))
+				++backDiagCount;
+				
+			
+			
+			if(rowCount == this.width){
 				won = true;
 				break;
 			}
-			markCount = 0;
+			if(colCount == this.width){
+				won = true;
+				break;
+			}
+			if(frontDiagCount == this.width){
+				won = true;
+			}
+			if(backDiagCount == this.width){
+				won = true;
+			}
+			
+			
+			rowCount = 0;
+			colCount = 0;
 		}
 
         return won; /* remove this line! */
