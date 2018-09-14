@@ -73,7 +73,7 @@ public class TicTacToeModel {
         
         /* Create grid (width x width) as a 2D Mark array */
 		
-		this.grid = new Mark[width][width];
+		this.grid = new Mark[this.width][this.width];
 
         /* INSERT YOUR CODE HERE */
 
@@ -161,15 +161,8 @@ public class TicTacToeModel {
         
         /* Return mark from the square at the specified location */
         
-        /* use isValidSquare?*/
 		
-		Mark mark = null;
-		
-		if(this.isValidSquare(row,col)){
-			if(isSquareMarked(row,col)){
-				mark = this.grid[row][col];
-			}
-		}
+		Mark mark = grid[row][col]; 
 
         return mark; /* remove this line! */
             
