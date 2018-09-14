@@ -20,15 +20,16 @@ public class TicTacToeView {
 		int width = model.getWidth();
 		
 		
-		System.out.println("  012");
+		System.out.println("  012\n");
 		
 		for(int i = 0; i < width; ++i){
 			
-			System.out.print("\n" + i + " ");
+			System.out.print( i + " ");
 			
-			for(int j = 0; j < width; ++i){
+			for(int j = 0; j < width; ++j){
 				System.out.print(model.getMark(i,j));
 			}
+			System.out.println();
 		}
 		
 
