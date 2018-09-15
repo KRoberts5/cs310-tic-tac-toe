@@ -40,6 +40,15 @@ public class TicTacToeView {
         /* Display a prompt for the player's next move (see examples) */
 
         /* INSERT YOUR CODE HERE */
+		
+		if(model.isXTurn()){
+			System.out.println("Player 1 (X) Move:");
+		}
+		else{
+			System.out.println("Player 2 (O) Move:");
+		}
+		
+		System.out.println("Enter the row and column numbers, separated by a space: ");
 
     }
 
