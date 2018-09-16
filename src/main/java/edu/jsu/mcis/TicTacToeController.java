@@ -39,6 +39,8 @@ public class TicTacToeController {
 		int row = keyboard.nextInt();
 		int col = keyboard.nextInt();
 		
+		
+		
 		boolean madeMark = model.makeMark(row,col);
 		
 		if(!madeMark)

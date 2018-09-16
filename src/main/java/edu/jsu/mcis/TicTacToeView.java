@@ -19,8 +19,13 @@ public class TicTacToeView {
         /* INSERT YOUR CODE HERE */
 		int width = model.getWidth();
 		
+		System.out.print("  ");
 		
-		System.out.println("  012\n");
+		for(int i = 0; i < width; ++i){
+			System.out.print(i);
+		}
+		System.out.println("\n");
+		
 		
 		for(int i = 0; i < width; ++i){
 			
@@ -31,6 +36,8 @@ public class TicTacToeView {
 			}
 			System.out.println();
 		}
+		
+		
 		
 
     }
@@ -48,7 +55,7 @@ public class TicTacToeView {
 			System.out.println("Player 2 (O) Move:");
 		}
 		
-		System.out.println("Enter the row and column numbers, separated by a space: ");
+		System.out.print("Enter the row and column numbers, separated by a space: ");
 
     }
 
@@ -58,7 +65,7 @@ public class TicTacToeView {
 
         /* INSERT YOUR CODE HERE */
 		
-		System.out.println("\nINVALID INPUT!!!\n");
+		System.out.println("\nINVALID INPUT!!! Please Try Again:\n");
 
     }
 
