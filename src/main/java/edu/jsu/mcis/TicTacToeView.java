@@ -1,80 +1,43 @@
 package edu.jsu.mcis;
 
-public class TicTacToeView {
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-    private TicTacToeModel model;
-    
-    /* CONSTRUCTOR */
+public class TicTacToeView extends JPanel implements ActionListener  {
+
+	Model model;
+	JButton[][] squares;
+	JLabel resultLabel;
 	
-    public TicTacToeView(TicTacToeModel model) {
-        
-        this.model = model;
-        
-    }
-	
-    public void viewModel() {
-        
-        /* Print the board to the console (see examples) */
-        
-        /* INSERT YOUR CODE HERE */
+	public TicTacToeGUI(Model model){
+		this.model = model;
+		
 		int width = model.getWidth();
 		
-		System.out.print("  ");
+		JPanel squaresPanel = new JPanel(new GridLayout(width,width);
+		
+		squares = new JButton[width][width];
+		
+		Dimension d = new Dimension(64,64);
 		
 		for(int i = 0; i < width; ++i){
-			System.out.print(i);
-		}
-		System.out.println("\n");
-		
-		
-		for(int i = 0; i < width; ++i){
-			
-			System.out.print( i + " ");
-			
 			for(int j = 0; j < width; ++j){
-				System.out.print(model.getMark(i,j));
+				squares[i][j] = new JButton();
+				squares[i][j].addActionListener(this);
+				squares[i][j].setName("Square" + i + j);
+				//finish initializing JButton; add to JPanel
+				squares[i][j].setPreferredSize(d);
+				squaresPanel.add(squares[i][j]);
+				
 			}
-			System.out.println();
 		}
+		this.add(squaresPanel);
 		
-		
-		
+		resultLabel = new JLabel();
+		resultLabel.setName("ResultLabel");
+	}
 
-    }
-
-    public void showNextMovePrompt() {
-
-        /* Display a prompt for the player's next move (see examples) */
-
-        /* INSERT YOUR CODE HERE */
-		
-		if(model.isXTurn()){
-			System.out.println("Player 1 (X) Move:");
-		}
-		else{
-			System.out.println("Player 2 (O) Move:");
-		}
-		
-		System.out.print("Enter the row and column numbers, separated by a space: ");
-
-    }
-
-    public void showInputError() {
-
-        /* Display an error if input is invalid (see examples) */
-
-        /* INSERT YOUR CODE HERE */
-		
-		System.out.println("\nINVALID INPUT!!! Please Try Again:\n");
-
-    }
-
-    public void showResult(String r) {
-
-        /* Display final winner */
-
-        System.out.println(r + "!");
-
-    }
+    
 	
 }
