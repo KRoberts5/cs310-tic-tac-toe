@@ -6,16 +6,16 @@ import javax.swing.*;
 
 public class TicTacToeView extends JPanel implements ActionListener  {
 
-	Model model;
-	JButton[][] squares;
-	JLabel resultLabel;
+	private TicTacToeModel model;
+	private JButton[][] squares;
+	private JLabel resultLabel;
 	
-	public TicTacToeGUI(Model model){
+	public TicTacToeView(TicTacToeModel model){
 		this.model = model;
 		
 		int width = model.getWidth();
 		
-		JPanel squaresPanel = new JPanel(new GridLayout(width,width);
+		JPanel squaresPanel = new JPanel(new GridLayout(width,width));
 		
 		squares = new JButton[width][width];
 		
@@ -36,6 +36,59 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		
 		resultLabel = new JLabel();
 		resultLabel.setName("ResultLabel");
+		resultLabel.setText("Welcome to Tic-Tac-Toe");
+		this.add(resultLabel);
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		
+		boolean madeMark = false;
+		
+		for(int i = 0; i < model.getWidth(); ++i){
+			for(int j = 0; j < model.getWidth(); ++j){
+				if(squares[i][j].equal(e.getSource())){
+					madeMark = model.makeMark(i,j);
+				}
+			}
+		}
+		
+		if(madeMark){
+			this.squareChosen(e.getSource());
+			this.showNextMovePrompt();
+		}
+		else{
+			this.showInputError();
+		}
+		
+	}
+	
+	private void squareChosen(JButton square){
+		if(model.isXTurn()){
+			square.setLabel("X"); 					//use Mark enum?
+			square.removeActionListener(this);
+		}
+		else{
+			square.setLabel("O");
+			square.removeActionListener(this);
+		}
+		
+		
+			
+	}
+	
+	private void showNextMovePrompt(){
+		
+		if(model.isXTurn()){
+			resultLabel.setText("Player 1 (X) Turn");
+		}
+		else{
+			resultLabel.setText("Player 2 (O) Turn");
+		}
+			
+		
+	}
+	private void showInputError(){
+		
 	}
 
     
