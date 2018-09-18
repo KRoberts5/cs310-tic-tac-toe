@@ -23,11 +23,11 @@ public class TicTacToeController {
 
     }
 
-    public void controlModel() {
+	public void controlModel() {
         
         /* Prompt player for next move using view's showNextMovePrompt() */
         
-        view.showNextMovePrompt();
+        //view.showNextMovePrompt();
         
         /* Receive and validate input, which should be read at the keyboard as
            two integers, the row and the column (for example, "1 1" for the
@@ -36,15 +36,15 @@ public class TicTacToeController {
         
         /* INSERT YOUR CODE HERE */
 		
-		int row = keyboard.nextInt();
-		int col = keyboard.nextInt();
+		//int row = keyboard.nextInt();
+		//int col = keyboard.nextInt();
 		
 		
 		
-		boolean madeMark = model.makeMark(row,col);
+		//boolean madeMark = model.makeMark(row,col);
 		
-		if(!madeMark)
-			view.showInputError();
+		//if(!madeMark)
+			//view.showInputError();
 			
     }
 
