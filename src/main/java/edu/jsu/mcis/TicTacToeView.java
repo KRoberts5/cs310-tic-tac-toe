@@ -15,7 +15,7 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 	
 	public TicTacToeView(TicTacToeModel model){
             
-            super();
+		super();
             
 		this.model = model;
 		
@@ -55,28 +55,29 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		JButton square = null;
 		TicTacToeModel.Mark mark = TicTacToeModel.Mark.EMPTY;
 		
-		for(int i = 0; i < model.getWidth(); ++i){
-			for(int j = 0; j < model.getWidth(); ++j){
-				if(squares[i][j] == (e.getSource())){
-					madeMark = model.makeMark(i,j);
-					
-					if(madeMark){
-						square = squares[i][j];
-						mark = model.getMark(i,j);
+		if(!model.isGameover()){		
+			for(int i = 0; i < model.getWidth(); ++i){
+				for(int j = 0; j < model.getWidth(); ++j){
+					if(squares[i][j] == (e.getSource())){
+						madeMark = model.makeMark(i,j);
+						
+						if(madeMark){
+							square = squares[i][j];
+							mark = model.getMark(i,j);
+						}
+						
 					}
-					
 				}
 			}
+			
+			if(madeMark){
+				this.squareChosen(square,mark);
+				this.showNextMovePrompt();
+			}
+			else{
+				this.showInputError();
+			}
 		}
-		
-		if(madeMark){
-			this.squareChosen(square,mark);
-			this.showNextMovePrompt();
-		}
-		else{
-			this.showInputError();
-		}
-                
 		if(model.isGameover()){
 			this.showResult();
 		}
