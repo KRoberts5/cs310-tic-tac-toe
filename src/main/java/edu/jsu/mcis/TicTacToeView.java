@@ -19,8 +19,9 @@ public class TicTacToeView extends JPanel implements ActionListener  {
             
 		this.model = model;
 		
-		int width = model.getWidth();
+		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
+		int width = model.getWidth();
 		JPanel squaresPanel = new JPanel(new GridLayout(width,width));
 		
 		squares = new JButton[width][width];
