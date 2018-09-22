@@ -43,34 +43,8 @@ public class TicTacToe {
 		window.add(view);
 		window.pack();
 		window.setVisible(true);
+	
 		
-		/*EventQueue.invokeLater(() ->{
-			JFrame window = new JFrame("Tic-Tac-Toe");
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        window.setSize(300, 300);
-			window.getContentPane().add(new TicTacToeView(model));
-			window.setVisible(true);
-		});*/
-		
-		
-		
-        //TicTacToeView view = new TicTacToeView(model);
-        //TicTacToeController controller = new TicTacToeController(model, view);
-        
-        /* MAIN LOOP */
-
-       /* while (!model.isGameover()) {
-            
-            view.viewModel();
-            controller.controlModel();
-            
-        }*/
-        
-        /* Game is over; show the final board and the winner */
-
-        //view.viewModel();
-
-        //view.showResult(model.getResult().toString());
 
     }
 

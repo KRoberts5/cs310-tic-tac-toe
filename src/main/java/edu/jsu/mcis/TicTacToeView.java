@@ -80,7 +80,7 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 			this.showNextMovePrompt();
 		}
 		else{
-			this.showInputError();
+			this.showInputError(); //shouldn't be called since the buttons are deactivated
 		}
 	}
 	

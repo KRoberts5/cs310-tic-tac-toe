@@ -2,7 +2,8 @@ package edu.jsu.mcis;
 
 import java.util.Scanner;
 
-public class TicTacToeController {
+public class TicTacToeController {			//this code isn't used in this version of the program
+											//I left it here for reference
 
     private TicTacToeModel model;
     private TicTacToeView view;
