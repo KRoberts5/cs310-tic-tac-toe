@@ -10,22 +10,20 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 	public static final int LABEL_SIZE = 30;
 	
 	private TicTacToeModel model;
+	
 	private JButton[][] squares;
+	private JPanel squaresPanel;
 	private JLabel resultLabel;
 	
 	public TicTacToeView(TicTacToeModel model){
-            
-		super();
-            
+
 		this.model = model;
+		int width = model.getWidth();
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-		
-		int width = model.getWidth();
-		JPanel squaresPanel = new JPanel(new GridLayout(width,width));
-		
+
+		squaresPanel = new JPanel(new GridLayout(width,width));
 		squares = new JButton[width][width];
-		
 		Dimension d = new Dimension(BUTTON_SIZE,BUTTON_SIZE);
 		
 		for(int i = 0; i < width; ++i){
@@ -47,35 +45,15 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		this.add(resultLabel);
 	}
 	
-	public void actionPerformed(ActionEvent e){
-            
-            
-		
-		boolean madeMark = false;
-		JButton square = null;
-		TicTacToeModel.Mark mark = TicTacToeModel.Mark.EMPTY;
+	public void actionPerformed(ActionEvent e){      
 		
 		if(!model.isGameover()){		
 			for(int i = 0; i < model.getWidth(); ++i){
 				for(int j = 0; j < model.getWidth(); ++j){
 					if(squares[i][j] == (e.getSource())){
-						madeMark = model.makeMark(i,j);
-						
-						if(madeMark){
-							square = squares[i][j];
-							mark = model.getMark(i,j);
-						}
-						
+						this.buttonClicked(i,j);
 					}
 				}
-			}
-			
-			if(madeMark){
-				this.squareChosen(square,mark);
-				this.showNextMovePrompt();
-			}
-			else{
-				this.showInputError();
 			}
 		}
 		if(model.isGameover()){
@@ -84,44 +62,23 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		
 	}
         
-        private void showResult(){
-            String output = "";
-			
-			output = model.getResult().toString();
-            
-            /*if(model.getResult() == TicTacToeModel.Result.TIE){
-                
-                output = "Well, This is Awkward... It Was a Tie!";
-                
-            }
-            
-            else{
-                output = "Congratulations to ";
-                output += model.getResult();
-                output += "! You've Won the Game!";
-            }*/
-            
-            resultLabel.setText(output);
-            
-            
-        }
+	private void showResult(){
+		String output = model.getResult().toString();
+		
+		resultLabel.setText(output);
+	}
 	
-	private void squareChosen(JButton square, TicTacToeModel.Mark mark){
+	
+	private void buttonClicked(int row, int col){
+		boolean madeMark = model.makeMark(row,col);
 		
-		square.setLabel(mark.toString());
-		
-                
-		/*for(int i = 0; i < model.getWidth(); ++i){
-			for(int j = 0; j < model.getWidth(); ++j){
-				if(squares[i][j] == square){
-					square.setLabel(model.getMark(i, j).toString());
-					//square.removeActionListener(this);
-				}
-			}
-		}*/
-		
-		
-			
+		if(madeMark){
+			squares[row][col].setText(model.getMark(row,col).toString());
+			this.showNextMovePrompt();
+		}
+		else{
+			this.showInputError();
+		}
 	}
 	
 	private void showNextMovePrompt(){
@@ -137,16 +94,16 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 	}
 	private void showInputError(){
             
-            String output = "Square Chosen! ";
-            
-            if(model.isXTurn()){
-                output += "Player 1 (X) Try Again";
-            }
-            else{
-                output+= "Player 2 (O) Try Again";
-            }
-            
-            resultLabel.setText(output);
+		String output = "Square Chosen! ";
+		
+		if(model.isXTurn()){
+			output += "Player 1 (X) Try Again.";
+		}
+		else{
+			output+= "Player 2 (O) Try Again.";
+		}
+		
+		resultLabel.setText(output);
 	}
 
     
