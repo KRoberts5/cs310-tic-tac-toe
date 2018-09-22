@@ -58,6 +58,8 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		}
 		if(model.isGameover()){
 			this.showResult();
+			
+			this.deactivateBoard();
 		}
 		
 	}
@@ -74,6 +76,7 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		
 		if(madeMark){
 			squares[row][col].setText(model.getMark(row,col).toString());
+			squares[row][col].removeActionListener(this);
 			this.showNextMovePrompt();
 		}
 		else{
@@ -104,6 +107,15 @@ public class TicTacToeView extends JPanel implements ActionListener  {
 		}
 		
 		resultLabel.setText(output);
+	}
+	
+	private void deactivateBoard(){
+		
+		for (int i = 0; i < model.getWidth(); ++i){
+			for(int j = 0; j < model.getWidth(); ++j){
+				squares[i][j].removeActionListener(this);
+			}
+		}
 	}
 
     
