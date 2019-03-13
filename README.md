@@ -79,7 +79,29 @@ This class creates, maintains, and monitors all the GUI elements in the program.
 
 Accepts a model object (that is stored for future communication). The constructor for this class provides code that instantiates and sets up all the required GUI elements. To create the Tic-Tac-Toe grid, a two dimensional array is created. Both the row and columns are set equal to the width of the gameboard. I utilize a nested for loop to generate all the required buttons and add them to a panel. Once all buttons have been added to the button panel, the button panel is added to the overall JPanel. 
 
+### actionPerformed()
 
+This method is called whenever a player presses a button corresponding to a grid space. Whenever clicked, the method makes sure that the game is not over. If the game is still being played, the method iterates through all the buttons searching for the button that was clicked. Once the button that was clicked is discovered, the program can generate the requested row and column numbers. The method then passes execution to a method called buttonClicked() (explained later). If, at the start of this function, the game was over, the method instead outputs the game-ending condition and deactivates the board.
+
+### showResult()
+
+This method is called by actionPerformed() whenever a game over condition is met. It retrieves a string from the model that represents how the game was ended. This string is place in the result label of the GUI.
+
+### buttonClicked()
+
+This is called by actionPerformed whenever a button is clicked and the game is not over. It calls the madeMark() method of the model with the requested row and column numbers. If the mark is successful, we set the text of the button equal to the symbol that represents the player that chose the square. The button is then deactivated. If, for some unexpected reason, the mark is not made, we instead output an error message.
+
+### showNextMovePrompt()
+
+This is called by buttonClicked() whenever a mark is successfully made. It notifies the current player that their turn has begun by setting the text of resultLabel to the appropriate prompt. 
+
+### showInputError()
+
+This method should only be called if, somehow, a button is not deactivated. When callled, it sets the text of resultLabel to a prompt that tells the current player to go again because their input was invalid. 
+
+### deactivateBoard()
+
+This method is called whenever a gameover condition is met. It iterates through all the buttons in the grid and makes them unclickable so that a user cannot continue to mark squares once the game has ended. 
 
 ## TicTacToeController
 
