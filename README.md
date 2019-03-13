@@ -8,7 +8,7 @@ In this readme, I will discuss the Part 2 version of the program. Both versions 
 
 ## TicTacToe
 
-This is the launcher class that contains the main method. The main method initializes values for the rows and columns and creates the MVC objects required for program execution. 
+This is the launcher class that contains the main method. The main method initializes values for the rows and columns and creates the MVC objects required for program execution. In this version of the program, only the Model and View classes are instantiated. Since input and output is relatively simple, the controller was not required to connect the model and the view. 
 
 When launched, the program may be launched with command line arguments. If an integer value is given as a command line argument, then the board will be created with the specified number of rows and columns. Otherwise, the board is initialized with 3 rows and columns. 
 
@@ -27,15 +27,15 @@ This class contains two constructors. When an integer value is given at the comm
 
 ### makeMark()
 
-This method accepts two integer values that represent the row and column values of the grid box. If the requested grid box is both valid and unmarked, the mark is set to represent the symbol of the current player. If the grid box is either invalid or marked, the user will be told to make another selection and the current player will not change.
+This method is called whenever a user requests to mark a grid location. The method accepts two integer values that represent the row and column values of the grid box. If the requested grid box is both valid and unmarked, the mark is set to represent the symbol of the current player. If the grid box is either invalid or marked, the user will be told to make another selection and the current player will not change. In the case that a mark was made, a boolean variable set to true is returned. Otherwise, false is returned.
 
 ### isValidSquare()
 
-Checks to make sure that row and column values retrieved from input are greater than or equal to zero and less than the width of the current gameboard. If valid, a boolean variable set to true is returned.
+This method is called whenever a method of the model needs to verify that a requested grid space is within the bounds of the game board. It checks to make sure that row and column values retrieved from input are greater than or equal to zero and less than the width of the current gameboard. If valid, a boolean variable set to true is returned. Otherwise, false is returned.
 
 ### isSquareMarked()
 
-Checks the state of the gridbox that the current user has chosen for selection. If the grid box represents a player value, the square has been marked and a boolean variable set to true will be returned. Otherwise, false is returned.
+This method is callled whenever a method of the model needs to check if a grid space is marked. If the grid box represents a player value, the square has been marked and a boolean variable set to true will be returned. Otherwise, false is returned.
 
 ### getMark()
 
@@ -43,11 +43,11 @@ Accepts a row and column value and obtains the mark enumeration at that location
 
 ### getResult()
 
-Calls methods that check for every possible game state (isMarkWin() and isTie()). If any of the method calls return true, the appropriate result enumeration is returned. Otherwise, the result enumeration returned is equal to none.
+This method is called after every successful mark to check if an end-game state has been reached. It Calls methods that check for every possible game state (isMarkWin() and isTie()). If any of the method calls return true, the appropriate result enumeration is returned. Otherwise, the result enumeration returned is equal to none.
 
 ### isMarkWin()
 
-Accepts the mark of a player and checks the gameboard to see if that player has won. To determine a winning a condition, all the following must be checked:
+This method is called by getResult(). It accepts the mark of a player and checks the gameboard to see if that player has won. To determine a winning a condition, all the following must be checked:
 
 1. Every row
 2. Every column
@@ -57,7 +57,7 @@ To accomplish this, I create four fields ( rowCount, colCount, frontDiagCount, b
 
 ### isTie()
 
-This method checks all the mark values of squares in the grid. If a square contains a mark that is not empty, a variable named markCount is incremented. Once we have iterated through all the squares, we compare markCount to the total number of squares in the grid. If these values are equivalent and no one has won the game, then a tie has occured. 
+This method is called by getResult() and checks all the mark values of squares in the grid. If a square contains a mark that is not empty, a variable named markCount is incremented. Once we have iterated through all the squares, we compare markCount to the total number of squares in the grid. If these values are equivalent and no one has won the game, then a tie has occured. 
 
 ### isGameover()
 
@@ -71,8 +71,26 @@ An accessor method for xTurn.
 
 An accessor method for the width instance field.
 
+## TicTacToeView
+
+This class creates, maintains, and monitors all the GUI elements in the program. It is instantiated by the TicTacToe class. The GUI in this version of the program is constructed by creating an array of JButtons. There is an additional JLabel that represents output about game-state data (who won, was the game a tie, etc.). 
+
+### Constructor
+
+Accepts a model object (that is stored for future communication). The constructor for this class provides code that instantiates and sets up all the required GUI elements. To create the Tic-Tac-Toe grid, a two dimensional array is created. Both the row and columns are set equal to the width of the gameboard. I utilize a nested for loop to generate all the required buttons and add them to a panel. Once all buttons have been added to the button panel, the button panel is added to the overall JPanel. 
+
+
+
 ## TicTacToeController
 
+This code is not used in the part 2 version of the program. I will briefly summarize what it contributed in the previous, master, version of the program.
+
+### Constructor
+
+The constructor for this class accepts a model and view object. Once these objects have been stored, the constructor instantiates a Scanner object so that input can be retrieved from the command line. 
+
+### controlModel()
+
+This method, in the master version of the program, is called in a loop while the game is not over. The method is responsible for calling the methods of the view that prompt the user input. Once a user submits input, this method retrieves the values submitted and calls the makeMark() method of the model. If a valid, unmarked position has been chosen, a mark is made and the game continues as normal. If invalid input was given, the controller notifies the user.
 
 
-## TicTacToeView
