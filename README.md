@@ -53,7 +53,7 @@ This method is called by getResult(). It accepts the mark of a player and checks
 2. Every column
 3. The diagonal squares
 
-To accomplish this, I create four fields ( rowCount, colCount, frontDiagCount, backDiagCount ) and utilize a nested for loop to check all of the winning conditions simultaneaously. While iterating through the squares in a given row, column, or diagonal, I simply increment the appropriate count every time the specified players mark is encountered. If one of the count fields is ever set equal to the width of the game board, then a winning condition has been met. 
+To accomplish this, I create four fields ( rowCount, colCount, frontDiagCount, backDiagCount ) and utilize a nested for loop to check all of the winning conditions simultaneaously. While iterating through the squares in a given row, column, or diagonal, I simply increment the appropriate count every time the specified player's mark is encountered. If one of the count fields is ever set equal to the width of the game board, then a winning condition has been met. 
 
 ### isTie()
 
@@ -73,7 +73,7 @@ An accessor method for the width instance field.
 
 ## TicTacToeView
 
-This class creates, maintains, and monitors all the GUI elements in the program. It is instantiated by the TicTacToe class. The GUI in this version of the program is constructed by creating an array of JButtons. There is an additional JLabel that represents output about game-state data (who won, was the game a tie, etc.). 
+This class creates, maintains, and monitors all the GUI elements in the program. It is instantiated by the TicTacToe class. The GUI in this version of the program is constructed by creating an 2D array of JButtons. There is an additional JLabel that represents output about game-state data (who won, was the game a tie, etc.). 
 
 ### Constructor
 
